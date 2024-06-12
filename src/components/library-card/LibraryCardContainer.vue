@@ -1,0 +1,42 @@
+<template>
+    <div id="library-card">
+        <TitleComponent :title="libraryCard.title"/>
+        <div class="library-card__wrapper">
+            <LivraryCardForm/>
+            <LibraryCardLogin/>
+        </div>
+    </div>
+</template>
+
+<script>
+import TitleComponent from '@/components/shared/TitleComponent.vue'
+import LivraryCardForm from '@/components/library-card/LibraryCardForm.vue'
+import LibraryCardLogin from '@/components/library-card/LibraryCardLogin.vue'
+
+
+export default {
+    components: {
+        TitleComponent,
+        LivraryCardForm,
+        LibraryCardLogin,
+    },
+    data() {
+        return {
+            libraryCard: {
+                title: 'Digital Library Cards'
+            }
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+#library-card {
+    padding: 20px;
+}
+
+.library-card__wrapper {
+    display: flex;
+    gap: 344px;
+}
+</style>
