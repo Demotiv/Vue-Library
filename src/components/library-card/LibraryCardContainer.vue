@@ -38,5 +38,11 @@ export default {
 .library-card__wrapper {
     display: flex;
     gap: 344px;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 21px;
+        align-items: center;
+    }
 }
 </style>

@@ -38,5 +38,10 @@ export default {
     margin-top: 40px;
     display: flex;
     justify-content: space-between;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 100px;
+    }
 }
 </style>

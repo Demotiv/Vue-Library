@@ -4,6 +4,7 @@
         <div class="nav-n-profile">
             <NavigationBlock/>
             <UserProfile/>
+            <HeaderHamburger/>
         </div>
     </div>
 </template>
@@ -12,13 +13,14 @@
 import HeaderLogo from '@/components/header/HeaderLogo.vue'
 import NavigationBlock from '@/components/header/NavigationBlock.vue'
 import UserProfile from '@/components/header/UserProfile.vue'
-
+import HeaderHamburger from '@/components/header/header-tablet/HeaderHamburger.vue'
 
 export default {
     components: {
         HeaderLogo,
         NavigationBlock,
         UserProfile,
+        HeaderHamburger,
     }
 }
 </script>
@@ -36,5 +38,9 @@ export default {
     display: flex;
     align-items: center;
     gap: 40px;
+}
+
+HeaderHamburger {
+    display: none;
 }
 </style>

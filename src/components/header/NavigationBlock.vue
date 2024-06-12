@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="navigation">
         <ul>
             <li 
                 class="list-item" 
@@ -43,20 +43,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+.navigation {
+    ul {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    
+        & a {
+            font-family: $inter;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 250%;
+            color: $white;
+    
+            &:hover {
+                color: $sand;
+            }
+        }
 
-    & a {
-        font-family: $inter;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 250%;
-        color: $white;
-
-        &:hover {
-            color: $sand;
+        @include tablet {
+            display: none;
         }
     }
 }

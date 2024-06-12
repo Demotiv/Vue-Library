@@ -67,12 +67,28 @@ export default {
     position: relative;
     width: 100%;
     overflow: hidden;
+
+    @include tablet {
+        display: flex;
+        justify-content: center;
+    }
     
 }
+
 .slide-group {
     display: flex;
     gap: 25px;
+
+    @include tablet {
+        max-width: 450px;
+        overflow: hidden;
+
+        & div {
+            position: relative;
+        }
+    }
 }
+
 .carousel__images {
     transition: transform 0.3s ease-in-out;
 }

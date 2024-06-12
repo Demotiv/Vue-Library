@@ -59,6 +59,10 @@ export default {
         letter-spacing: 0.02em;
         color: $black;
     }
+
+    @include tablet {
+        align-items: center;
+    }
 }
 
 .form {

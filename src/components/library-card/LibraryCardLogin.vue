@@ -1,7 +1,7 @@
 <template>
     <div class="library-login">
         <h2 class="library-login__title">{{ libraryLogin.title }}</h2>
-        <p class="library-login__p">{{ libraryLogin.p }}</p>
+        <p class="library-login__p" v-html="libraryLogin.p"></p>
         <div class="library-login__btns">
             <button>{{ libraryLogin.buttons.singUp }}</button>
             <button>{{ libraryLogin.buttons.login }}</button>
@@ -15,15 +15,40 @@ export default {
         return {
             libraryLogin: {
                 title: 'Get a reader card',
-                p: `You will be able to see a reader card after 
-                    logging into account or you can register a new account`,
+                p: '',
                 buttons: {
                     singUp: 'Sign Up',
                     login: 'Log in'
                 }
-            }
+            },
+            windowWidth: 0
         }
+    },
+    mounted() {
+        this.windowWidth = window.innerWidth
+        window.addEventListener('resize', this.handleResize)
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.handleResize)
+    },
+    methods: {
+        handleResize() {
+            this.windowWidth = window.innerWidth;
+        }
+    },
+    watch: {
+    windowWidth(newWidth) {
+      if (newWidth <= 768) {
+        this.libraryLogin.p = `You will be able to see a reader card after 
+            logging into 
+            <br> 
+            account or you can register a new account`
+      } else {
+        this.libraryLogin.p = `You will be able to see a reader card after 
+            logging into account or you can register a new account`
+      }
     }
+  }
 }
 </script>
 
@@ -34,6 +59,10 @@ export default {
     flex-direction: column;
     align-items: flex-end;
     gap: 35px;
+
+    @include tablet {
+        align-items: center;
+    }
 
     &__title {
         font-family: $forum;
@@ -50,7 +79,11 @@ export default {
         line-height: 200%;
         letter-spacing: 0.02em;
         text-align: right;
-        color: $black;    
+        color: $black;
+
+        @include tablet {
+            text-align: center;
+        }
     }
 
     &__btns {

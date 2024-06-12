@@ -96,5 +96,11 @@ export default {
     grid-column-gap: 220px;
     grid-row-gap: 40px;
     right: 0px;
+
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>

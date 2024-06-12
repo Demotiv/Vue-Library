@@ -15,6 +15,16 @@
             class="carousel__btn" 
             @click="selectedBtn(2)"
             :class="{selected: currentIndex === 2}"></button>
+
+        <button 
+            class="carousel__btn__tablet" 
+            @click="selectedBtn(3)"
+            :class="{selected: currentIndex === 3}"></button>
+
+        <button 
+            class="carousel__btn__tablet" 
+            @click="selectedBtn(4)"
+            :class="{selected: currentIndex === 4}"></button>
     </div>
 </template>
 
@@ -40,7 +50,8 @@ export default {
     gap: 10px;
 }
 
-.carousel__btn {
+.carousel__btn,
+.carousel__btn__tablet {
     width: 16px;
     height: 16px;
     border-radius: 50px;
@@ -51,6 +62,14 @@ export default {
 
     &.selected {
         background: $sand;
+    }
+}
+
+.carousel__btn__tablet {
+    display: none;
+
+    @include tablet {
+        display: block;
     }
 }
 </style>
