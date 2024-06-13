@@ -37,7 +37,7 @@ export default {
 .footer-line {
     margin-top: 30px;
     border: 1px solid $white;
-    width: 1400px;
+    width: 100%;
     height: 0px;    
 }
 </style>
