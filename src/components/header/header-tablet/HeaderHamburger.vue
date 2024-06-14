@@ -37,13 +37,14 @@ export default {
             border: 1px solid $white;
             width: 45px;
             height: 0px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.5s ease, opacity 0.2s ease;
 
             &.active:nth-child(1) {
                 transform: translateY(12px) rotateZ(45deg);
             }
 
             &.active:nth-child(2) {
+                transform: translateX(100px);
                 opacity: 0;
             }
 
