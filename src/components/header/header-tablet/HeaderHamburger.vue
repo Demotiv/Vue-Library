@@ -18,6 +18,7 @@ export default {
     methods: {
         toggleMenu() {
             this.onMenu = !this.onMenu
+            this.$emit('toggle-menu')
         }
     }
 }
@@ -31,6 +32,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        z-index: 3;
         cursor: pointer;
 
         &__line {

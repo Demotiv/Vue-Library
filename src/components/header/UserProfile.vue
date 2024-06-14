@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .user-profile {
+    z-index: 3;
     cursor: pointer;
 }
 </style>
