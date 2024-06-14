@@ -16,7 +16,10 @@
                 <button class="book__button">Buy</button>
             </section>
         </div>
-        <img class="book__img" :src="img.src" :alt="img.alt">
+        <img 
+            class="book__img" 
+            :src="img.src" 
+            :alt="img.alt">
     </div>
 </template>
 

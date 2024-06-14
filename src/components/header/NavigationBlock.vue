@@ -16,25 +16,25 @@ export default {
     data() {
         return {
             navItems: [
-                {
-                    label: 'About',
-                    href: 'about'
+                { 
+                    label: 'About', 
+                    href: 'about' 
                 },
-                {
-                    label: 'Favorites',
-                    href: 'favorites'
+                { 
+                    label: 'Favorites', 
+                    href: 'favorites' 
                 },
-                {
-                    label: 'Coffee shop',
-                    href: 'coffee-shop'
+                { 
+                    label: 'Coffee shop', 
+                    href: 'coffee-shop' 
                 },
-                {
-                    label: 'Contacts',
-                    href: 'contacts'
+                { 
+                    label: 'Contacts', 
+                    href: 'contacts' 
                 },
-                {
+                { 
                     label: 'Library Card',
-                    href: 'library-card'
+                    href: 'library-card' 
                 },
             ]
         }

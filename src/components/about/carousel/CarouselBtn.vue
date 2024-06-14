@@ -1,6 +1,5 @@
 <template>
     <div class="carousel__btn-container">
-
         <button 
             class="carousel__btn" 
             @click="selectedBtn(0)"

@@ -3,7 +3,8 @@
         <Responsive :breakpoints="{
             tablet: el => el.width <= 768
         }">
-            <TitleComponent slot-scope="el"
+            <TitleComponent 
+                slot-scope="el"
                 :title="coffeeShop.title"
                 :p="el.is.tablet ? coffeeShop.pTablet : coffeeShop.pDesktop"/>
         </Responsive>
@@ -40,8 +41,8 @@ export default {
                     and also you can try desserts
                     <br> 
                     from bakery.`,
-                pTablet: `In our library, we have of cozy coffee shop, welcoming 
-                    in&nbsp;<br> 
+                pTablet: `In our library, we have of cozy coffee shop, welcoming in
+                    <br> 
                     customers with frothy cappuccinos and friendly conversation. 
                     <br> 
                     You can get a favorite book and read in coffee shop. 

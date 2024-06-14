@@ -30,27 +30,12 @@ export default {
     data() {
         return {
             images: [
-                {
-                    src: c1,
-                    alt: 'c1'
-                },
-                {
-                    src: c2,
-                    alt: 'c2'
-                },
-                {
-                    src: c3,
-                    alt: 'c3'  
-                },
-                {
-                    src: c4,
-                    alt: 'c4'
-                },
-                {
-                    src: c5,
-                    alt: 'c5'
-                }
-            ],
+                { src: c1, alt: 'c1' },
+                { src: c2, alt: 'c2' },
+                { src: c3, alt: 'c3' },
+                { src: c4, alt: 'c4' },
+                { src: c5, alt: 'c5' }
+            ]
         }
     },
     props: {

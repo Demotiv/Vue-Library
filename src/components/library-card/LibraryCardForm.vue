@@ -1,7 +1,10 @@
 <template>
     <div class="library-form">
         <h2 class="library-form__title">{{ findCard.title }}</h2>
-        <form action="#" method="get" class="form" id="find-card-form">
+        <form action="#" 
+            method="get" 
+            class="form" 
+            id="find-card-form">
             <fieldset>
                 <div class="form__wrapper">
                     <legend class="form__title">{{ form.title }}</legend>
