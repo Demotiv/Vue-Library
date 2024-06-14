@@ -4,7 +4,7 @@
         <div class="nav-n-profile">
             <NavigationBlock/>
             <UserProfile/>
-            <HeaderHamburger @toggle-menu="onHamburger"/>
+            <HeaderHamburgerLines @toggle-menu="onHamburger"/>
         </div>
         <HamburgerNavigationMenu :on-menu="isMenuOpen"/>
     </div>
@@ -14,7 +14,7 @@
 import HeaderLogo from '@/components/header/HeaderLogo.vue'
 import NavigationBlock from '@/components/header/NavigationBlock.vue'
 import UserProfile from '@/components/header/UserProfile.vue'
-import HeaderHamburger from '@/components/header/header-tablet/HeaderHamburger.vue'
+import HeaderHamburgerLines from '@/components/header/header-tablet/HeaderHamburgerLines.vue'
 import HamburgerNavigationMenu from '@/components/header/header-tablet/HeaderNavigationMenu.vue'
 
 export default {
@@ -22,7 +22,7 @@ export default {
         HeaderLogo,
         NavigationBlock,
         UserProfile,
-        HeaderHamburger,
+        HeaderHamburgerLines,
         HamburgerNavigationMenu
     },
     data() {
