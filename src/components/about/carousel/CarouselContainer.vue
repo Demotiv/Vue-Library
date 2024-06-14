@@ -1,6 +1,9 @@
 <template>
     <div class="carousel">
-        <CarouselImages :current-index="currentIndex"/>
+        <CarouselImages
+            @on-left="left"
+            @on-right="right"
+            :current-index="currentIndex"/>
         <CarouselBtn 
             @selected-btn="selectedBtn" 
             :current-index="currentIndex"/>
@@ -24,6 +27,12 @@ export default {
     methods: {
         selectedBtn(index) {
             this.currentIndex = index
+        },
+        left() {
+            this.currentIndex = this.currentIndex - 1
+        },
+        right() {
+            this.currentIndex = this.currentIndex + 1
         }
     }
 }
