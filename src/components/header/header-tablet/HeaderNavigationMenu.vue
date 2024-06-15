@@ -1,6 +1,8 @@
 <template>
     <transition name="slide">
-        <div class="hamburger-navigation" v-if="onMenu">
+        <div 
+            class="hamburger-navigation" 
+            v-if="onMenu">
             <NavigationBlock/>
         </div>
     </transition>

@@ -25,11 +25,13 @@ export default {
         HeaderHamburgerLines,
         HamburgerNavigationMenu
     },
+
     data() {
         return {
-            isMenuOpen: false
+            isMenuOpen: false,
         }
     },
+
     methods: {
         onHamburger() {
             this.isMenuOpen = !this.isMenuOpen
