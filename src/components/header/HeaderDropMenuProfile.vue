@@ -6,8 +6,10 @@
                 <div/>
             </div>
             <div class="drop-menu-profile__body">
-                <a href="#">{{ guest.login }}</a>
-                <a href="#">{{ guest.register }}</a>
+                <a href="#" 
+                    @click.prevent="handleLoginClick">{{ guest.login }}</a>
+                <a href="#"
+                    @click.prevent="handleRegisterClick">{{ guest.register }}</a>
             </div>
         </div>
     </transition>
@@ -28,6 +30,16 @@ export default {
                 login: 'Log in',
                 register: 'Register'
             }
+        }
+    },
+    methods: {
+        handleLoginClick() {
+            this.$emit('update:onDropDown', false)
+            this.$emit('open-login')
+        },
+        handleRegisterClick() {
+            this.$emit('update:onDropDown', false)
+            this.$emit('open-register')
         }
     }
 }

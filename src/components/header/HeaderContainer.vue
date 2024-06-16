@@ -3,13 +3,16 @@
         <HeaderLogo/>
         <div class="nav-n-profile">
             <NavigationBlock/>
-            <UserProfile @toogle-drop-down="onDropDown"/>
+            <UserProfile @toogle-drop-down="openDropDown"/>
             <HeaderHamburgerLines 
                 @toggle-menu="onHamburger"
                 :on-menu="isMenuOpen"/>
         </div>
         <HamburgerNavigationMenu :on-menu="isMenuOpen"/>
-        <HeaderDropMenuProfile :on-drop-down="isDropDown"/>
+        <HeaderDropMenuProfile 
+            :on-drop-down.sync="isDropDown"
+            @open-login="$emit('open-login')"
+            @open-register="$emit('open-register')"/>
     </div>
 </template>
 
@@ -43,11 +46,11 @@ export default {
             this.isMenuOpen = !this.isMenuOpen
             this.isDropDown = false
         },
-        onDropDown() {
+        openDropDown() {
             this.isDropDown = !this.isDropDown
             this.isMenuOpen = false
         }
-    }
+    },
 }
 </script>
 

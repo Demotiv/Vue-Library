@@ -15,6 +15,27 @@ Vue.directive('click-outside', {
     },
 })
 
+Vue.directive('click-outside-arg', {
+    bind: function (el, binding, vnode) {
+      el.clickOutsideEvent = function (event) {
+        if (!(el == event.target || el.contains(event.target))) {
+          const argValue = vnode.context[binding.arg]
+          if (argValue) {
+            const currentValue = vnode.context[binding.arg]
+            if (argValue === currentValue) {
+              vnode.context[binding.expression](event)
+            }
+          }
+        }
+      };
+      document.body.addEventListener('click', el.clickOutsideEvent)
+    },
+    unbind: function (el) {
+      document.body.removeEventListener('click', el.clickOutsideEvent)
+    },
+  })
+  
+/*
 // Клик вне элемента с пропсом
 Vue.directive('click-outside-arg', {
     bind: function (el, binding, vnode) {
@@ -31,3 +52,4 @@ Vue.directive('click-outside-arg', {
       document.body.removeEventListener('click', el.clickOutsideEvent)
     },
   })
+*/
