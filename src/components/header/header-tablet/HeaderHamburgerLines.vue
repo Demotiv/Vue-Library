@@ -10,14 +10,14 @@
 
 <script>
 export default {
-    data() {
-        return{
-            onMenu: false
-        }
+    props: {
+        onMenu: {
+            type: Boolean,
+            default: false
+        }    
     },
     methods: {
         toggleMenu() {
-            this.onMenu = !this.onMenu
             this.$emit('toggle-menu')
         }
     }

@@ -25,7 +25,7 @@
                         <label for="cardNumber"></label>
                     </div>
                 </div>
-                <button>{{ form.button }}</button>
+                <button @click.prevent>{{ form.button }}</button>
             </fieldset>
         </form>
     </div>

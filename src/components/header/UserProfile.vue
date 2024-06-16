@@ -1,5 +1,5 @@
 <template>
-    <div class="user-profile">
+    <div class="user-profile" @click="toogleDropDown">
         <img 
             :src="image.src" 
             :alt="image.alt">
@@ -16,6 +16,11 @@ export default {
             src: img,
             alt: 'icone-profile'
             }
+        }
+    },
+    methods: {
+        toogleDropDown() {
+            this.$emit('toogle-drop-down')
         }
     }
 }
