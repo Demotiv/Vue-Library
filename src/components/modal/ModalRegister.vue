@@ -46,7 +46,9 @@
         </div>
         <div class="modal-register__login-link">
             <p>{{ loginLink.p }}</p>
-            <a :href="loginLink.link">{{ loginLink.login }}</a>
+            <a 
+                @click.prevent="toggleModal('login')"
+                :href="loginLink.link">{{ loginLink.login }}</a>
         </div>
     </div>
     </transition>
@@ -82,7 +84,12 @@ export default {
                 link: '#login'
             }
         }
-    }      
+    },
+    methods: {
+        toggleModal(modal) {
+            this.$emit('toggle-modal', modal)
+        }
+    }     
 }
 </script>
 

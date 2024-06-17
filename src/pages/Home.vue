@@ -13,10 +13,12 @@
         <ModalBackDrop :backDrop="backDrop"/>
         <ModalLogin 
             @close-login="closeLogin"
-            :loginModal="loginModal"/>
+            :loginModal="loginModal"
+            @toggle-modal="toggleModal"/>
         <ModalRegister
             @close-register="closeRegister"
-            :registerModal="registerModal"/>
+            :registerModal="registerModal"
+            @toggle-modal="toggleModal"/>
     </div>
 </template>
 
@@ -70,6 +72,10 @@ export default {
         closeRegister() {
             this.registerModal = !this.registerModal
             this.backDrop = !this.backDrop
+        },
+        toggleModal(modal) {
+            this.loginModal = modal === 'login'
+            this.registerModal = modal === 'register'
         }
     }
 }
