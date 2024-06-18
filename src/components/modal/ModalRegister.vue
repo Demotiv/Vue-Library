@@ -13,7 +13,8 @@
             <form 
                 action="#" 
                 method="get" 
-                class="modal-register__form">
+                class="modal-register__form"
+                @submit="handleRegister">
                 <label for="first-name">{{ registerForm.firstName }}</label>
                 <input 
                     type="text" 
@@ -56,6 +57,7 @@
 
 <script>
 import closeBtn from '@/assets/img/modal/close_btn.png'
+import { addUserData } from '@/storage'
 
 export default {
     props: {
@@ -81,13 +83,30 @@ export default {
             loginLink: {
                 p: 'Already have an account?',
                 login: 'Login',
-                link: '#login'
+                link: 'login'
             }
         }
     },
     methods: {
         toggleModal(modal) {
             this.$emit('toggle-modal', modal)
+        },
+        handleRegister(event) {
+            event.preventDefault()
+
+            const form = event.target
+            const formData = new FormData(form)
+            const userData = Object.fromEntries(formData.entries())
+
+            addUserData(userData.email, userData)
+
+            const userId = userData
+
+            this.$emit('close-register')
+
+            form.reset()
+
+            this.$emit('user-in', userId)
         }
     }     
 }

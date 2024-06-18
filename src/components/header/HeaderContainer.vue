@@ -3,7 +3,10 @@
         <HeaderLogo/>
         <div class="nav-n-profile">
             <NavigationBlock/>
-            <UserProfile @toogle-drop-down="openDropDown"/>
+            <UserProfile 
+                @toogle-drop-down="openDropDown"
+                :user-in="userIn"
+                :user-id="userId"/>
             <HeaderHamburgerLines 
                 @toggle-menu="onHamburger"
                 :on-menu="isMenuOpen"/>
@@ -35,14 +38,22 @@ export default {
         HamburgerNavigationMenu,
         HeaderDropMenuProfile
     },
-
+    props: {
+        userIn: {
+            type: Boolean,
+            default: false
+        },
+        userId: {
+            type: Object,
+            require: true
+        }
+    },
     data() {
         return {
             isMenuOpen: false,
             isDropDown: false,
         }
     },
-
     methods: {
         onHamburger() {
             this.isMenuOpen = !this.isMenuOpen

@@ -2,23 +2,29 @@
     <div class="home">
         <HeaderContainer 
             @open-login="showLogin"
-            @open-register="showRegister"/>
+            @open-register="showRegister"
+            :user-in="user.userIn"
+            :user-id="user.userId"/>
         <WelcomeContainer/>
         <AboutContainer/>
         <FavoritesContainer/>
         <CoffeeShopContainer/>
         <ContactsContainer/>
-        <LibraryCardContainer/>
+        <LibraryCardContainer
+            @open-login="showLogin"
+            @open-register="showRegister"/>
         <FooterContainner/>
         <ModalBackDrop :backDrop="backDrop"/>
         <ModalLogin 
             @close-login="closeLogin"
             :loginModal="loginModal"
-            @toggle-modal="toggleModal"/>
+            @toggle-modal="toggleModal"
+            @user-in="handleUserIn"/>
         <ModalRegister
             @close-register="closeRegister"
             :registerModal="registerModal"
-            @toggle-modal="toggleModal"/>
+            @toggle-modal="toggleModal"
+            @user-in="handleUserIn"/>
     </div>
 </template>
 
@@ -53,7 +59,14 @@ export default {
         return {
             backDrop: false,
             loginModal: false,
-            registerModal: false
+            registerModal: false,
+            user: {
+                userIn: false, 
+                userId: {
+                    type: Object,
+                    require: true
+                }
+            }
         }
     },
     methods: {
@@ -76,6 +89,10 @@ export default {
         toggleModal(modal) {
             this.loginModal = modal === 'login'
             this.registerModal = modal === 'register'
+        },
+        handleUserIn(userId) {
+            this.user.userIn = !this.user.userIn
+            this.user.userId = userId
         }
     }
 }

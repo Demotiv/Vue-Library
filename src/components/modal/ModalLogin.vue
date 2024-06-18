@@ -13,7 +13,8 @@
                 <form 
                     action="#" 
                     method="get" 
-                    class="modal-login__form">
+                    class="modal-login__form"
+                    @submit="handleLogin">
                     <label for="email-login">{{ loginForm.email }}</label>
                     <input 
                         type="email" 
@@ -41,6 +42,7 @@
 
 <script>
 import closeBtn from '@/assets/img/modal/close_btn.png'
+import { getUserByEmail } from '@/storage'
 
 export default {
     props: {
@@ -64,13 +66,32 @@ export default {
             registerLink: {
                 p: 'Don’t have an account?',
                 register: 'Register',
-                link: '#register'
+                link: 'register'
             }
         }
     },
     methods: {
         toggleModal(modal) {
             this.$emit('toggle-modal', modal)
+        },
+        handleLogin(event) {
+            event.preventDefault()
+
+            const form = event.target
+            const formData = new FormData(form)
+            const userData = Object.fromEntries(formData.entries())
+
+            const userId = getUserByEmail(userData.email)
+
+            if (userId && userId.password === userData.password) {
+                this.$emit('close-login')
+
+                form.reset()
+
+                this.$emit('user-in', userId)
+            } else {
+                alert('Неверный адрес электронной почты или пароль')
+            }
         }
     }
 }

@@ -3,7 +3,9 @@
         <TitleComponent :title="libraryCard.title"/>
         <div class="library-card__wrapper">
             <LivraryCardForm/>
-            <LibraryCardLogin/>
+            <LibraryCardLogin
+                @open-register="$emit('open-register')"
+                @open-login="$emit('open-login')"/>
         </div>
     </div>
 </template>

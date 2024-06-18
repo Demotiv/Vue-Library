@@ -3,8 +3,10 @@
         <h2 class="library-login__title">{{ libraryLogin.title }}</h2>
         <p class="library-login__p">{{ libraryLogin.pDesktop }}</p>
         <div class="library-login__btns">
-            <button>{{ libraryLogin.buttons.singUp }}</button>
-            <button>{{ libraryLogin.buttons.login }}</button>
+            <button
+                @click="handleRegisterClick">{{ libraryLogin.buttons.singUp }}</button>
+            <button
+                @click="handleLoginClick">{{ libraryLogin.buttons.login }}</button>
         </div>
     </div>
 </template>
@@ -26,6 +28,14 @@ export default {
                     login: 'Log in'
                 }
             }
+        }
+    },
+    methods: {
+        handleRegisterClick() {
+            this.$emit('open-register')
+        },
+        handleLoginClick() {
+            this.$emit('open-login')
         }
     }
 }

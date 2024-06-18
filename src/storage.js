@@ -19,6 +19,11 @@ export function getUserData(userId) {
   return usersData[userId] || {}
 }
 
+export function getUserByEmail(email) {
+  const usersData = getUsersData() 
+  return Object.values(usersData).find(user => user.email === email)
+} 
+
 export function removeUserData(userId) {
   let usersData = getUsersData()
   delete usersData[userId]
