@@ -48,7 +48,7 @@
             <p>{{ loginLink.p }}</p>
             <a 
                 @click.prevent="toggleModal('login')"
-                :href="loginLink.link">{{ loginLink.login }}</a>
+                :href="`#${loginLink.link}`">{{ loginLink.login }}</a>
         </div>
     </div>
     </transition>

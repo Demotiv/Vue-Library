@@ -5,7 +5,9 @@
                 class="list-item" 
                 v-for="(item, index) in navItems" 
                 :key="index">
-                <a :href="`#${item.href}`">{{ item.label }}</a>
+                <a 
+                    @click="handleLinkClick"
+                    :href="`#${item.href}`">{{ item.label }}</a>
             </li>
         </ul>
     </nav>
@@ -38,7 +40,12 @@ export default {
                 },
             ]
         }
-    }        
+    },
+    methods: {
+        handleLinkClick() {
+            this.$emit('close-hamburger')
+        }
+    }       
 }
 </script>
 

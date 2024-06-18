@@ -1,7 +1,7 @@
 <template>
     <transition name="slide">
         <div class="hamburger-navigation" v-if="onMenu">
-            <NavigationBlock/>
+            <NavigationBlock @close-hamburger="$emit('close-hamburger')"/>
         </div>
     </transition>
 </template>
@@ -19,10 +19,10 @@ export default {
             default: false
         }
     },
-    data() {
-        return {
-            oldOnMenuValue: null,
-            newOnMenuValue: null
+    methods: {
+        onLink() {
+            this.$emit('onLink')
+            console.log('click nav')
         }
     }
 }

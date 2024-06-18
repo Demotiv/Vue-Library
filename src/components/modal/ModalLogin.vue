@@ -33,7 +33,7 @@
                 <p>{{ registerLink.p }}</p>
                 <a 
                     @click.prevent="toggleModal('register')"
-                    :href="registerLink.link">{{ registerLink.register }}</a>
+                    :href="`#${registerLink.link}`">{{ registerLink.register }}</a>
             </div>
         </div>
     </transition>

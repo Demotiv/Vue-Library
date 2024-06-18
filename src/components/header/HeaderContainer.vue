@@ -8,7 +8,9 @@
                 @toggle-menu="onHamburger"
                 :on-menu="isMenuOpen"/>
         </div>
-        <HamburgerNavigationMenu :on-menu="isMenuOpen"/>
+        <HamburgerNavigationMenu 
+            @close-hamburger="onHamburger"
+            :on-menu="isMenuOpen"/>
         <HeaderDropMenuProfile 
             :on-drop-down.sync="isDropDown"
             @open-login="$emit('open-login')"
