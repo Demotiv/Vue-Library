@@ -98,6 +98,12 @@ export default {
             const formData = new FormData(form)
             const userData = Object.fromEntries(formData.entries())
 
+            const randomCardNumber = Math.floor(Math.random() * 0x1000000000).toString(16).padStart(9, '0').toUpperCase()
+            const randomBonuses = Math.floor(1000 + Math.random() * 9000)
+
+            userData.cardNumber = randomCardNumber
+            userData.bonuses = randomBonuses
+            
             addUserData(userData.email, userData)
 
             const userId = userData

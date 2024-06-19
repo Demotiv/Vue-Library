@@ -3,6 +3,7 @@
         <HeaderContainer 
             @open-login="showLogin"
             @open-register="showRegister"
+            @log-out="handleUserIn"
             :user-in="user.userIn"
             :user-id="user.userId"/>
         <WelcomeContainer/>
@@ -40,6 +41,7 @@ import FooterContainner from '@/components/footer/FooterContainer.vue'
 import ModalBackDrop from '@/components/modal/ModalBackDrop.vue'
 import ModalLogin from '@/components/modal/ModalLogin.vue'
 import ModalRegister from '@/components/modal/ModalRegister.vue'
+import { ResponsiveDirective } from 'vue-responsive-components'
 
 export default {
     components: {
@@ -54,6 +56,9 @@ export default {
         ModalBackDrop,
         ModalLogin,
         ModalRegister
+    },
+    directives: {
+        responsive: ResponsiveDirective
     },
     data() {
         return {

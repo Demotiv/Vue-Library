@@ -2,14 +2,25 @@
     <transition name="slide">
         <div class="drop-menu-profile" v-if="onDropDown">
             <div class="drop-menu-profile__header">
-                <h2>{{ guest.h2 }}</h2>
+                <h2 
+                v-if="userIn"
+                style="font-size: 12px;">{{ user.h2 }}</h2>
+                <h2 v-else>{{ guest.h2 }}</h2>
                 <div/>
             </div>
             <div class="drop-menu-profile__body">
-                <a href="#" 
-                    @click.prevent="handleLoginClick">{{ guest.login }}</a>
-                <a href="#"
-                    @click.prevent="handleRegisterClick">{{ guest.register }}</a>
+                <template v-if="userIn">
+                    <a href="#" 
+                        @click.prevent="handleProfileClick">{{ user.myProfile }}</a>
+                    <a href="#"
+                        @click.prevent="handleLogOutClick">{{ user.logOut }}</a>
+                </template>
+                <template v-else>
+                    <a href="#" 
+                        @click.prevent="handleLoginClick">{{ guest.login }}</a>
+                    <a href="#"
+                        @click.prevent="handleRegisterClick">{{ guest.register }}</a>
+                </template>
             </div>
         </div>
     </transition>
@@ -21,6 +32,14 @@ export default {
         onDropDown: {
             type: Boolean,
             default: false
+        },
+        userIn: {
+            type: Boolean,
+            default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -29,6 +48,22 @@ export default {
                 h2: 'Profile',
                 login: 'Log in',
                 register: 'Register'
+            },
+            user: {
+                h2: '',
+                myProfile: 'My profile',
+                logOut: 'Log Out'
+            }
+        }
+    },
+    watch: {
+        userId: {
+            handler(newVal) {
+                if (newVal.cardNumber) {
+                    this.user.h2 = newVal.cardNumber
+                } else {
+                    this.user.h2 = ''
+                }
             }
         }
     },
@@ -40,6 +75,10 @@ export default {
         handleRegisterClick() {
             this.$emit('update:onDropDown', false)
             this.$emit('open-register')
+        },
+        handleLogOutClick() {
+            this.$emit('update:onDropDown', false)
+            this.$emit('log-out')
         }
     }
 }

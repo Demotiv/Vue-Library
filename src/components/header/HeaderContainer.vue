@@ -15,9 +15,13 @@
             @close-hamburger="onHamburger"
             :on-menu="isMenuOpen"/>
         <HeaderDropMenuProfile 
-            :on-drop-down.sync="isDropDown"
             @open-login="$emit('open-login')"
-            @open-register="$emit('open-register')"/>
+            @open-register="$emit('open-register')"
+            @log-out="$emit('log-out')"
+            :on-drop-down.sync="isDropDown"
+            :user-in="userIn"
+            :user-id="userId"
+            />
     </div>
 </template>
 
@@ -45,7 +49,7 @@ export default {
         },
         userId: {
             type: Object,
-            require: true
+            default: () => ({})
         }
     },
     data() {

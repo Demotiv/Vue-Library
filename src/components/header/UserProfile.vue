@@ -1,6 +1,7 @@
 <template>
     <div 
         class="user-profile" 
+        @click="toogleDropDown"
         v-if="userIn">{{ userInitials }}</div>
     <div 
         class="guest-profile"
@@ -23,7 +24,7 @@ export default {
         },
         userId: {
             type: Object,
-            require: true
+            default: () => ({})
         }
     },
     data() {
@@ -35,19 +36,26 @@ export default {
             userInitials: ''
         }
     },
+    watch: {
+        userId: {
+            handler(newVal) {
+                if (newVal['first-name'] && newVal['last-name']) {
+                    this.userInitials = `${newVal['first-name'].charAt(0)}${newVal['last-name'].charAt(0).toUpperCase()}`
+                } else {
+                    this.userInitials = ''
+                }
+            },
+            immediate: true
+        },
+        userIn(newVal) {
+            if (!newVal) {
+                this.userInitials = ''
+            }
+        }
+    },
     methods: {
         toogleDropDown() {
             this.$emit('toogle-drop-down')
-        },
-        userIcon() {
-            this.userInitials = this.userId.firstName[0] + this.userId.lastName[0]
-        }
-    },
-    watch: {
-        userIn(newValue) {
-            if (newValue) {
-                this.userIcon()
-            }
         }
     }
 }
@@ -60,9 +68,13 @@ export default {
 }
 
 .user-profile {
+    text-align: center;
+    align-content: center;
     width: 28px;
     height: 28px;
     border-radius: 50%;
     background-color: $white;
+    z-index: 3;
+    cursor: pointer;
 }
 </style>
