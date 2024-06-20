@@ -76,7 +76,7 @@ export default {
             if (this.currentIndex < this.images.length - 1) {
                 this.$emit('on-right')
             }     
-        }
+        },
     }
 }
 </script>

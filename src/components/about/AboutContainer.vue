@@ -3,7 +3,7 @@
         <TitleComponent 
             :title="about.title"  
             :p="about.p"/>
-        <CarouselContainer/>
+        <CarouselContainer :is-tablet="isTablet"/>
     </div>
 </template>
 
@@ -15,6 +15,12 @@ export default {
     components: {
         TitleComponent,
         CarouselContainer,
+    },
+    props: {
+        isTablet: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {

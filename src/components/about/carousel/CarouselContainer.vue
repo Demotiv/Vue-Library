@@ -19,9 +19,28 @@ export default {
         CarouselImages,
         CarouselBtn,
     },
+    props: {
+        isTablet: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             currentIndex: 0
+        }
+    },
+    watch: {
+        isTablet: function(newVal) {
+            if (!newVal) {
+                if (this.currentIndex === 4) {
+                    this.currentIndex = this.currentIndex - 2
+                } else if (this.currentIndex === 3) {
+                    this.currentIndex = this.currentIndex - 1
+                } else {
+                    this.currentIndex
+                }
+            }
         }
     },
     methods: {

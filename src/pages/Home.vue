@@ -7,7 +7,7 @@
             :user-in="user.userIn"
             :user-id="user.userId"/>
         <WelcomeContainer/>
-        <AboutContainer/>
+        <AboutContainer :is-tablet="isTablet"/>
         <FavoritesContainer/>
         <CoffeeShopContainer/>
         <ContactsContainer/>
@@ -41,7 +41,6 @@ import FooterContainner from '@/components/footer/FooterContainer.vue'
 import ModalBackDrop from '@/components/modal/ModalBackDrop.vue'
 import ModalLogin from '@/components/modal/ModalLogin.vue'
 import ModalRegister from '@/components/modal/ModalRegister.vue'
-import { ResponsiveDirective } from 'vue-responsive-components'
 
 export default {
     components: {
@@ -57,11 +56,9 @@ export default {
         ModalLogin,
         ModalRegister
     },
-    directives: {
-        responsive: ResponsiveDirective
-    },
     data() {
         return {
+            isTablet: false,
             backDrop: false,
             loginModal: false,
             registerModal: false,
@@ -74,7 +71,17 @@ export default {
             }
         }
     },
+    created() {
+        this.checkWindowsSize()
+        window.addEventListener('resize', this.checkWindowsSize)
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.checkWindowsSize)
+    },
     methods: {
+        checkWindowsSize() {
+            this.isTablet = window.innerWidth <= 768
+        },
         showLogin() {
             this.loginModal = !this.loginModal
             this.backDrop = !this.backDrop
