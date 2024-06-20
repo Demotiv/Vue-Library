@@ -44,6 +44,7 @@
 <script>
 import closeBtn from '@/assets/img/modal/close_btn.png'
 import { getUserByEmail } from '@/storage'
+import { increaseVisitsCounter } from '@/storage'
 import { directive as Clickaway } from 'vue-clickaway'
 
 export default {
@@ -95,10 +96,11 @@ export default {
 
             if (userId && userId.password === userData.password) {
                 this.$emit('close-login')
+                this.$emit('user-in', userId)
+
+                increaseVisitsCounter(userData.email)
 
                 form.reset()
-
-                this.$emit('user-in', userId)
             } else {
                 alert('Неверный адрес электронной почты или пароль')
             }

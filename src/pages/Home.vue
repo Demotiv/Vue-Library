@@ -69,7 +69,7 @@ export default {
                 userIn: false, 
                 userId: {
                     type: Object,
-                    require: true
+                    default: () => ({})
                 }
             }
         }

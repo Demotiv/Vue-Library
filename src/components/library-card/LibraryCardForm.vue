@@ -14,7 +14,9 @@
                             id="name" 
                             name="full-name"
                             pattern="[a-zA-Z ]+" 
-                            placeholder="Reader's name">
+                            placeholder="Reader's name"
+                            class="form__input"
+                            :style="isValidInput ? { color: 'rgb(187, 148, 95)' } : {}">
                         <label for="name"></label>
                     </div>
                     <div class="form__input-wrapper">
@@ -22,21 +24,29 @@
                             id="cardNumber" 
                             name="card-number" 
                             pattern="[a-zA-Z0-9]{1,9}" 
-                            placeholder="Card number">
+                            placeholder="Card number"
+                            class="form__input"
+                            :style="isValidInput ? { color: 'rgb(187, 148, 95)' } : {}">
                         <label for="cardNumber"></label>
                     </div>
                 </div>
-                <button>{{ form.button }}</button>
+                <LibraryCardVisitsInfo v-if="showVisits"/>
+                <button v-else>{{ form.button }}</button>
             </fieldset>
         </form>
     </div>
 </template>
 
 <script>
-import { getUserCardNumber } from '@/storage'
-import { getUserFullName } from '@/storage'
+import LibraryCardVisitsInfo from '@/components/library-card/LibraryCardVisitsInfo.vue'
+import { getUserByCardNumber } from '@/storage'
+import { getUserByFullName } from '@/storage'
+import { getVisitsInfo } from '@/storage'
 
 export default {
+    components: {
+        LibraryCardVisitsInfo
+    },
     props: {
         userIn: {
             type: Boolean,
@@ -51,10 +61,22 @@ export default {
             form: {
                 title: 'Brooklyn Public Library',
                 button: 'Check the card'
+            },
+            showVisits: false,
+            isValidInput: false,
+            visitInfo: {
+                type: Object,
+                default: () => ({})
             }
         }
     },
     methods: {
+        onVisits() {
+            this.showVisits = !this.showVisits
+        },
+        onValidinput() {
+            this.isValidInput = !this.isValidInput
+        },
         handleCheck(event) {
             event.preventDefault()
 
@@ -62,12 +84,19 @@ export default {
             const formData = new FormData(form)
             const userData = Object.fromEntries(formData.entries())
 
-            const userCardNumber = getUserCardNumber(userData.cardNumber)
-            const userFullName = getUserFullName(userData.fullName)
+            const userCardNumber = getUserByCardNumber(userData['card-number'])?.cardNumber
+            const userFullName = getUserByFullName(userData['full-name'])?.fullName
 
             if (!this.userIn) {
-                if (userCardNumber === userData.cardNumber && userFullName === userData.fullName) {
-                    console.log('click')
+                if (userCardNumber === userData['card-number'] && userFullName === userData['full-name']) {
+                    this.onVisits()
+                    this.onValidinput()
+
+                    setTimeout(() => {
+                        this.onVisits()
+                        this.onValidinput()
+                        form.reset()
+                    }, 10000)
                 }
             }
         }
@@ -132,7 +161,7 @@ export default {
         margin-bottom: 5px;
     }
 
-    & input {
+    &__input {
         padding-left: 20px;
         width: 520px;
         height: 66px;
@@ -144,6 +173,10 @@ export default {
         color: $grey;
         border-radius: 10px;
         border: none;
+    }
+
+    &__input--valid {
+        color: $sand;
     }
 
     & button {

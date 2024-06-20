@@ -19,23 +19,54 @@ export function getUserData(userId) {
   return usersData[userId] || {}
 }
 
+export function removeUserData(userId) {
+  let usersData = getAllUsersData()
+  delete usersData[userId]
+  setUsersData(usersData)
+}
+
+//------------------------------//
+
+// Проверка почты
 export function getUserByEmail(email) {
   const usersData = getAllUsersData() 
   return Object.values(usersData).find(user => user.email === email)
 }
 
-export function getUserCardNumber(cardNumber) {
-  const usersData = getUserData() 
+// Получение номера карты
+export function getUserByCardNumber(cardNumber) {
+  const usersData = getAllUsersData() 
   return Object.values(usersData).find(user => user.cardNumber === cardNumber)
 }
 
-export function getUserFullName(fullName) {
-  const usersData = getUserData()
+// Получение полного имени
+export function getUserByFullName(fullName) {
+  const usersData = getAllUsersData()
   return Object.values(usersData).find(user => user.fullName === fullName)
 }
 
-export function removeUserData(userId) {
+// Увеличение счетчика посещений
+export function increaseVisitsCounter(email) {
+  const usersData = getAllUsersData()
+  const user = Object.values(usersData).find(user => user.email === email)
+
+  if (user) {
+    user.visitsCounter++
+    setUsersData(usersData)
+  }
+}
+
+export function getVisitsInfo(cardNumber) {
   let usersData = getAllUsersData()
-  delete usersData[userId]
-  setUsersData(usersData)
+  let user = Object.values(usersData).find(user => user.cardNumber === cardNumber)
+
+  if (user) {
+    console.log(user)
+    return {
+      visitsCounter: user.visitsCounter,
+      bonuses: user.visitsCounter
+    }
+  } else {
+    return null
+  }
 }
