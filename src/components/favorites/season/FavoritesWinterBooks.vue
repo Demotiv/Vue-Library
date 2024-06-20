@@ -3,19 +3,27 @@
         <FavoritesBook 
             :staff="staff"
             :book="firstBook"
-            :img="firstBook.img"/>
+            :img="firstBook.img"
+            :user-in="userIn"
+            @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="secondBook"
-            :img="secondBook.img"/>
+            :img="secondBook.img"
+            :user-in="userIn"
+            @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="thirdBook"
-            :img="thirdBook.img"/>
+            :img="thirdBook.img"
+            :user-in="userIn"
+            @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="fouthBook"
-            :img="fouthBook.img"/>
+            :img="fouthBook.img"
+            :user-in="userIn"
+            @open-login="$emit('open-login')"/>
     </div>
 </template>
 
@@ -30,6 +38,12 @@ import FavoritesBook from '../FavoritesBook'
 export default {
     components: {
         FavoritesBook,
+    },
+    props: {
+        userIn: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {

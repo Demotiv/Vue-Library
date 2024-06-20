@@ -13,7 +13,9 @@
                 <div class="book__text">
                     <p>{{ book.p }}</p>
                 </div>
-                <button class="book__button">Buy</button>
+                <button 
+                    class="book__button"
+                    @click="handleClick">Buy</button>
             </section>
         </div>
         <img 
@@ -37,6 +39,18 @@ export default {
         img: {
             type: Object,
             required: true
+        },
+        userIn: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        handleClick() {
+            if (!this.userIn) {
+                console.log('click')
+                this.$emit('open-login')
+            }
         }
     }
 }

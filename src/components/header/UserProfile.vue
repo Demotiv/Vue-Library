@@ -1,7 +1,9 @@
 <template>
     <div 
-        class="user-profile" 
+        class="user-profile"
+        ref="userProfile"
         @click="toogleDropDown"
+        @mouseover="getFullName"
         v-if="userIn">{{ userInitials }}</div>
     <div 
         class="guest-profile"
@@ -56,6 +58,10 @@ export default {
     methods: {
         toogleDropDown() {
             this.$emit('toogle-drop-down')
+        },
+        getFullName() {
+            const userProfile = this.$refs.userProfile
+            userProfile.setAttribute('title', this.userId.fullName)
         }
     }
 }

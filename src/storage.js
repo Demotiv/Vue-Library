@@ -55,18 +55,3 @@ export function increaseVisitsCounter(email) {
     setUsersData(usersData)
   }
 }
-
-export function getVisitsInfo(cardNumber) {
-  let usersData = getAllUsersData()
-  let user = Object.values(usersData).find(user => user.cardNumber === cardNumber)
-
-  if (user) {
-    console.log(user)
-    return {
-      visitsCounter: user.visitsCounter,
-      bonuses: user.visitsCounter
-    }
-  } else {
-    return null
-  }
-}

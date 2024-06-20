@@ -2,7 +2,10 @@
     <div id="favorites">
         <TitleComponent :title="favorites.title"/>
         <FavoritesBtns @season-changed="currentSeason = $event"/>
-        <FavoritesBooksWrapper :current-season="currentSeason"/>
+        <FavoritesBooksWrapper 
+            :current-season="currentSeason"
+            :user-in="userIn"
+            @open-login="$emit('open-login')"/>
     </div>
 </template>
 
@@ -16,6 +19,12 @@ export default {
         TitleComponent,
         FavoritesBtns,
         FavoritesBooksWrapper,
+    },
+    props: {
+        userIn: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {

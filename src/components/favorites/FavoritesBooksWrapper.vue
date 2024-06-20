@@ -1,10 +1,22 @@
 <template>
     <div class="favorites-books-wrapper">
         <transition name="fade">
-            <FavoritesWinterBooks v-if="currentSeason === 'winter'"/>
-            <FavoritesSpringBooks v-else-if="currentSeason === 'spring'"/>
-            <FavoritesSummerBooks v-else-if="currentSeason === 'summer'"/>
-            <FavoritesAutumnBooks v-else-if="currentSeason === 'autumn'"/>
+            <FavoritesWinterBooks 
+                v-if="currentSeason === 'winter'"
+                :user-in="userIn"
+                @open-login="$emit('open-login')"/>
+            <FavoritesSpringBooks 
+                v-else-if="currentSeason === 'spring'"
+                :user-in="userIn"
+                @open-login="$emit('open-login')"/>
+            <FavoritesSummerBooks 
+                v-else-if="currentSeason === 'summer'"
+                :user-in="userIn"
+                @open-login="$emit('open-login')"/>
+            <FavoritesAutumnBooks 
+                v-else-if="currentSeason === 'autumn'"
+                :user-in="userIn"
+                @open-login="$emit('open-login')"/>
         </transition>
     </div>
 </template>
@@ -26,6 +38,10 @@ export default {
         currentSeason: {
             type: String,
             required: true
+        },
+        userIn: {
+            type: Boolean,
+            default: false
         }
     }
 }

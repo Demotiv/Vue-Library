@@ -94,7 +94,7 @@ export default {
 
             const userId = getUserByEmail(userData.email)
 
-            if (userId && userId.password === userData.password) {
+            if (userId.email === userData.email && userId.password === userData.password) {
                 this.$emit('close-login')
                 this.$emit('user-in', userId)
 

@@ -24,6 +24,12 @@ import Bonuses from '@/assets/img/library-card/bonuses.png'
 import Books from '@/assets/img/library-card/books.png'
 
 export default {
+    props: {
+        visitsInfo: {
+            type: Object,
+            default: () => ({})
+        }
+    },
     data() {
         return {
             visits: {
@@ -32,7 +38,7 @@ export default {
                     src: Visits,
                     alt: 'visits-png'
                 },
-                amount: '1'
+                amount: this.visitsInfo.visitsCounter
             },
             bonuses: {
                 title: 'Bonuses',
@@ -40,7 +46,7 @@ export default {
                     src: Bonuses,
                     alt: 'bonuses-png'
                 },
-                amount: '2'
+                amount: this.visitsInfo.bonusesCounter
             },
             books: {
                 title: 'Books',

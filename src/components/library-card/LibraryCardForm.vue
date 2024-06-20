@@ -30,7 +30,9 @@
                         <label for="cardNumber"></label>
                     </div>
                 </div>
-                <LibraryCardVisitsInfo v-if="showVisits"/>
+                <LibraryCardVisitsInfo 
+                    v-if="showVisits"
+                    :visits-info="visitsInfo"/>
                 <button v-else>{{ form.button }}</button>
             </fieldset>
         </form>
@@ -41,7 +43,6 @@
 import LibraryCardVisitsInfo from '@/components/library-card/LibraryCardVisitsInfo.vue'
 import { getUserByCardNumber } from '@/storage'
 import { getUserByFullName } from '@/storage'
-import { getVisitsInfo } from '@/storage'
 
 export default {
     components: {
@@ -64,7 +65,7 @@ export default {
             },
             showVisits: false,
             isValidInput: false,
-            visitInfo: {
+            visitsInfo: {
                 type: Object,
                 default: () => ({})
             }
@@ -77,6 +78,12 @@ export default {
         onValidinput() {
             this.isValidInput = !this.isValidInput
         },
+        showVisitInfo(cardNumber) {
+            this.visitsInfo = {
+                visitsCounter: cardNumber.visitsCounter,
+                bonusesCounter: cardNumber.bonuses
+            }
+        },
         handleCheck(event) {
             event.preventDefault()
 
@@ -84,13 +91,14 @@ export default {
             const formData = new FormData(form)
             const userData = Object.fromEntries(formData.entries())
 
-            const userCardNumber = getUserByCardNumber(userData['card-number'])?.cardNumber
+            const userCardNumber = getUserByCardNumber(userData['card-number'])
             const userFullName = getUserByFullName(userData['full-name'])?.fullName
 
             if (!this.userIn) {
-                if (userCardNumber === userData['card-number'] && userFullName === userData['full-name']) {
+                if (userCardNumber.cardNumber === userData['card-number'] && userFullName === userData['full-name']) {
                     this.onVisits()
                     this.onValidinput()
+                    this.showVisitInfo(userCardNumber)
 
                     setTimeout(() => {
                         this.onVisits()

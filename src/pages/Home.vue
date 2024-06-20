@@ -8,7 +8,9 @@
             :user-id="user.userId"/>
         <WelcomeContainer/>
         <AboutContainer :is-tablet="isTablet"/>
-        <FavoritesContainer/>
+        <FavoritesContainer 
+            :user-in="user.userIn"
+            @open-login="showLogin"/>
         <CoffeeShopContainer/>
         <ContactsContainer/>
         <LibraryCardContainer
@@ -29,6 +31,7 @@
             @user-in="handleUserIn"
             @click-out-side-register-modal="closeRegisterToClick"
             :registerModal="registerModal"/>
+        <ModalProfileContainer :user-id="user.userId"/>
     </div>
 </template>
 
@@ -44,6 +47,7 @@ import FooterContainner from '@/components/footer/FooterContainer.vue'
 import ModalBackDrop from '@/components/modal/ModalBackDrop.vue'
 import ModalLogin from '@/components/modal/ModalLogin.vue'
 import ModalRegister from '@/components/modal/ModalRegister.vue'
+import ModalProfileContainer from '@/components/modal/profile/ModalProfileContainer.vue'
 
 export default {
     components: {
@@ -57,7 +61,8 @@ export default {
         FooterContainner,
         ModalBackDrop,
         ModalLogin,
-        ModalRegister
+        ModalRegister,
+        ModalProfileContainer
     },
     data() {
         return {
