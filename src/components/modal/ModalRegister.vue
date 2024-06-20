@@ -3,7 +3,8 @@
         <div 
             class="modal-register" 
             id="register"
-            v-if="registerModal">
+            v-if="registerModal"
+            v-clickaway="closeRegister">
         <img 
             :src="closeBtn.src" 
             :alt="closeBtn.alt"
@@ -58,8 +59,12 @@
 <script>
 import closeBtn from '@/assets/img/modal/close_btn.png'
 import { addUserData } from '@/storage'
+import { directive as Clickaway } from 'vue-clickaway'
 
 export default {
+    directives: {
+        Clickaway
+    },
     props: {
         registerModal: {
             type: Boolean,
@@ -91,6 +96,11 @@ export default {
         toggleModal(modal) {
             this.$emit('toggle-modal', modal)
         },
+        closeRegister() {
+            if (this.registerModal) {
+                this.$emit('click-out-side-register-modal')
+            }
+        },
         handleRegister(event) {
             event.preventDefault()
 
@@ -101,6 +111,7 @@ export default {
             const randomCardNumber = Math.floor(Math.random() * 0x1000000000).toString(16).padStart(9, '0').toUpperCase()
             const randomBonuses = Math.floor(1000 + Math.random() * 9000)
 
+            userData.fullName = userData['first-name'] + ' ' + userData['last-name']
             userData.cardNumber = randomCardNumber
             userData.bonuses = randomBonuses
             

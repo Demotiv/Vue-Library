@@ -4,7 +4,8 @@
         <form action="#" 
             method="get" 
             class="form" 
-            id="find-card-form">
+            id="find-card-form"
+            @submit="handleCheck">
             <fieldset>
                 <div class="form__wrapper">
                     <legend class="form__title">{{ form.title }}</legend>
@@ -25,15 +26,23 @@
                         <label for="cardNumber"></label>
                     </div>
                 </div>
-                <button @click.prevent>{{ form.button }}</button>
+                <button>{{ form.button }}</button>
             </fieldset>
         </form>
     </div>
 </template>
 
 <script>
+import { getUserCardNumber } from '@/storage'
+import { getUserFullName } from '@/storage'
 
 export default {
+    props: {
+        userIn: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             findCard: {
@@ -44,7 +53,25 @@ export default {
                 button: 'Check the card'
             }
         }
-    }    
+    },
+    methods: {
+        handleCheck(event) {
+            event.preventDefault()
+
+            const form = event.target
+            const formData = new FormData(form)
+            const userData = Object.fromEntries(formData.entries())
+
+            const userCardNumber = getUserCardNumber(userData.cardNumber)
+            const userFullName = getUserFullName(userData.fullName)
+
+            if (!this.userIn) {
+                if (userCardNumber === userData.cardNumber && userFullName === userData.fullName) {
+                    console.log('click')
+                }
+            }
+        }
+    } 
 }
 </script>
 

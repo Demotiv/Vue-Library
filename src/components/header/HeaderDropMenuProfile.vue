@@ -1,6 +1,9 @@
 <template>
     <transition name="slide">
-        <div class="drop-menu-profile" v-if="onDropDown">
+        <div 
+            class="drop-menu-profile" 
+            v-if="onDropDown"
+            v-clickaway="closeDropMenu">
             <div class="drop-menu-profile__header">
                 <h2 
                 v-if="userIn"
@@ -27,7 +30,12 @@
 </template>
 
 <script>
+import { directive as Clickaway } from 'vue-clickaway'
+
 export default {
+    directives: {
+        Clickaway
+    },
     props: {
         onDropDown: {
             type: Boolean,
@@ -79,6 +87,11 @@ export default {
         handleLogOutClick() {
             this.$emit('update:onDropDown', false)
             this.$emit('log-out')
+        },
+        closeDropMenu() {
+            if (this.onDropDown) {
+                this.$emit('click-out-side-drop-menu')
+            }
         }
     }
 }

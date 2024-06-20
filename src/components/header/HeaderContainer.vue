@@ -13,11 +13,13 @@
         </div>
         <HamburgerNavigationMenu 
             @close-hamburger="onHamburger"
+            @click-out-side-hamburger="closeHamburger"
             :on-menu="isMenuOpen"/>
         <HeaderDropMenuProfile 
             @open-login="$emit('open-login')"
             @open-register="$emit('open-register')"
             @log-out="$emit('log-out')"
+            @click-out-side-drop-menu="closeDropMenu"
             :on-drop-down.sync="isDropDown"
             :user-in="userIn"
             :user-id="userId"
@@ -66,6 +68,12 @@ export default {
         openDropDown() {
             this.isDropDown = !this.isDropDown
             this.isMenuOpen = false
+        },
+        closeHamburger() {
+            this.isMenuOpen = false
+        },
+        closeDropMenu() {
+            this.isDropDown = false
         }
     },
 }

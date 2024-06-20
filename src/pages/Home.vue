@@ -13,19 +13,22 @@
         <ContactsContainer/>
         <LibraryCardContainer
             @open-login="showLogin"
-            @open-register="showRegister"/>
+            @open-register="showRegister"
+            :user-in="user.userIn"/>
         <FooterContainner/>
         <ModalBackDrop :backDrop="backDrop"/>
         <ModalLogin 
             @close-login="closeLogin"
-            :loginModal="loginModal"
             @toggle-modal="toggleModal"
-            @user-in="handleUserIn"/>
+            @user-in="handleUserIn"
+            @click-out-side-login-modal="closeLoginToClick"
+            :loginModal="loginModal"/>
         <ModalRegister
             @close-register="closeRegister"
-            :registerModal="registerModal"
             @toggle-modal="toggleModal"
-            @user-in="handleUserIn"/>
+            @user-in="handleUserIn"
+            @click-out-side-register-modal="closeRegisterToClick"
+            :registerModal="registerModal"/>
     </div>
 </template>
 
@@ -105,6 +108,14 @@ export default {
         handleUserIn(userId) {
             this.user.userIn = !this.user.userIn
             this.user.userId = userId
+        },
+        closeLoginToClick() {
+            this.loginModal = false
+            this.backDrop = false
+        },
+        closeRegisterToClick() {
+            this.registerModal = false
+            this.backDrop = false
         }
     }
 }

@@ -1,6 +1,9 @@
 <template>
     <transition name="slide">
-        <div class="hamburger-navigation" v-if="onMenu">
+        <div 
+            class="hamburger-navigation" 
+            v-if="onMenu"
+            v-clickaway="closeHamburger">
             <NavigationBlock @close-hamburger="$emit('close-hamburger')"/>
         </div>
     </transition>
@@ -8,8 +11,12 @@
 
 <script>
 import NavigationBlock from '@/components/header/NavigationBlock.vue'
+import { directive as Clickaway } from 'vue-clickaway'
 
 export default {
+    directives: {
+        Clickaway
+    },
     components: {
         NavigationBlock,
     },
@@ -23,6 +30,11 @@ export default {
         onLink() {
             this.$emit('onLink')
             console.log('click nav')
+        },
+        closeHamburger() {
+            if (this.onMenu) {
+                this.$emit('click-out-side-hamburger')
+            }
         }
     }
 }

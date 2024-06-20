@@ -2,7 +2,7 @@
     <div id="library-card">
         <TitleComponent :title="libraryCard.title"/>
         <div class="library-card__wrapper">
-            <LivraryCardForm/>
+            <LivraryCardForm :user-in="userIn"/>
             <LibraryCardLogin
                 @open-register="$emit('open-register')"
                 @open-login="$emit('open-login')"/>
@@ -21,6 +21,12 @@ export default {
         TitleComponent,
         LivraryCardForm,
         LibraryCardLogin,
+    },
+    props: {
+        userIn: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {

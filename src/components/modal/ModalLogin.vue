@@ -3,7 +3,8 @@
         <div 
             class="modal-login" 
             id="login"
-            v-if="loginModal">
+            v-if="loginModal"
+            v-clickaway="closeLogin">
             <img 
                 :src="closeBtn.src" 
                 :alt="closeBtn.alt" 
@@ -43,8 +44,12 @@
 <script>
 import closeBtn from '@/assets/img/modal/close_btn.png'
 import { getUserByEmail } from '@/storage'
+import { directive as Clickaway } from 'vue-clickaway'
 
 export default {
+    directives: {
+        Clickaway
+    },
     props: {
         loginModal: {
             type: Boolean,
@@ -73,6 +78,11 @@ export default {
     methods: {
         toggleModal(modal) {
             this.$emit('toggle-modal', modal)
+        },
+        closeLogin() {
+            if (this.loginModal) {
+                this.$emit('click-out-side-login-modal')
+            }
         },
         handleLogin(event) {
             event.preventDefault()

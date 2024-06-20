@@ -1,13 +1,9 @@
 <template>
     <div id="coffee-shop">
-        <Responsive :breakpoints="{
-            tablet: el => el.width <= 768
-        }">
-            <TitleComponent 
-                slot-scope="el"
-                :title="coffeeShop.title"
-                :p="el.is.tablet ? coffeeShop.pTablet : coffeeShop.pDesktop"/>
-        </Responsive>
+        <TitleComponent 
+            slot-scope="el"
+            :title="coffeeShop.title"
+            :p="coffeeShop.pDesktop"/>
         <div class="coffee-shop__menu">
             <CoffeeShopDrinks/>
             <CoffeeShopDesserts/>
@@ -19,14 +15,12 @@
 import TitleComponent from '@/components/shared/TitleComponent.vue'
 import CoffeeShopDrinks from  './CoffeeShopDrinks.vue'
 import CoffeeShopDesserts from './CoffeeShopDesserts.vue'
-import { Responsive } from 'vue-responsive-components'
 
 export default {
     components: {
         TitleComponent,
         CoffeeShopDrinks,
-        CoffeeShopDesserts,
-        Responsive
+        CoffeeShopDesserts
     },
     data() {
         return {
