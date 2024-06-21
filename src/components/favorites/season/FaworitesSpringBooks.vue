@@ -5,24 +5,32 @@
             :book="fifthBook"
             :img="fifthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="sixthBook"
             :img="sixthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="seventhBook"
             :img="seventhBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="eighthBook"
             :img="eighthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
     </div>
 </template>
@@ -43,6 +51,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -50,7 +62,7 @@ export default {
             staff: 'Staff Picks',
             fifthBook: {
                 title: 'The Body',
-                author: 'By Stephen King',
+                author: 'Stephen King',
                 p: `Powerful novel that takes you back to a nostalgic time, 
                 exploring both the beauty and danger and loss of innocence 
                 that is youth.`,
@@ -61,7 +73,7 @@ export default {
             },
             sixthBook: {
                 title: 'Carry: A Memoir of Survival on Stolen Land',
-                author: 'By Toni Jenson',
+                author: 'Toni Jenson',
                 p: `This memoir about the author's relationship with gun 
                 violence feels both expansive and intimate, resulting in a 
                 lyrical indictment of the way things are.`,
@@ -72,7 +84,7 @@ export default {
             },
             seventhBook: {
                 title: 'Days of Distraction',
-                author: 'By Alexandra Chang',
+                author: 'Alexandra Chang',
                 p: `A sardonic view of Silicon Valley culture, 
                 a meditation on race, and a journal of displacement 
                 and belonging, all in one form-defying package of spare prose.`,
@@ -83,7 +95,7 @@ export default {
             },
             eighthBook: {
                 title: 'Dominicana',
-                author: 'By Angie Cruz',
+                author: 'Angie Cruz',
                 p: `A fascinating story of a teenage girl who marries 
                 a man twice her age with the promise to bring her to America. 
                 Her marriage is an opportunity for her family to eventually 

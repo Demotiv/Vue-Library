@@ -18,6 +18,7 @@
         <HeaderDropMenuProfile 
             @open-login="$emit('open-login')"
             @open-register="$emit('open-register')"
+            @open-profile="$emit('open-profile')"
             @log-out="$emit('log-out')"
             @click-out-side-drop-menu="closeDropMenu"
             :on-drop-down.sync="isDropDown"
@@ -94,11 +95,4 @@ export default {
     align-items: center;
     gap: 40px;
 }
-
-/*
-HeaderHamburger {
-    display: none;
-}
-*/
-
 </style>

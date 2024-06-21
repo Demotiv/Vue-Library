@@ -3,17 +3,20 @@
         <div class="visit-info__visits">
             <span>{{ visits.title }}</span>
             <img :src="visits.img.src" :alt="visits.img.alt">
-            <span>{{ visits.amount }}</span>
+            <span v-if="userIn">{{ userId.visitsCounter }}</span>
+            <span v-else>{{ visits.amount }}</span>
         </div>
         <div class="visit-info__bonuses">
             <span>{{ bonuses.title }}</span>
             <img :src="bonuses.img.src" :alt="bonuses.img.alt">
-            <span>{{ bonuses.amount }}</span>
+            <span v-if="userIn">{{ userId.bonuses }}</span>
+            <span v-else>{{ bonuses.amount }}</span>
         </div>
         <div class="visit-info__books">
             <span>{{ books.title }}</span>
             <img :src="books.img.src" :alt="books.img.alt">
-            <span>{{ books.amount }}</span>
+            <span v-if="userIn">{{ userId.books }}</span>
+            <span v-else>{{ books.amount }}</span>
         </div>
     </div>
 </template>
@@ -26,6 +29,14 @@ import Books from '@/assets/img/library-card/books.png'
 export default {
     props: {
         visitsInfo: {
+            type: Object,
+            default: () => ({})
+        },
+        userIn: {
+            type: Boolean,
+            default: false
+        },
+        userId: {
             type: Object,
             default: () => ({})
         }
@@ -54,7 +65,7 @@ export default {
                     src: Books,
                     alt: 'books-png'
                 },
-                amount: '3'
+                amount: this.visitsInfo.booksCounter
             }
         }
     }

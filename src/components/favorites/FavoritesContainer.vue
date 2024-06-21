@@ -5,6 +5,8 @@
         <FavoritesBooksWrapper 
             :current-season="currentSeason"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
     </div>
 </template>
@@ -24,6 +26,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {

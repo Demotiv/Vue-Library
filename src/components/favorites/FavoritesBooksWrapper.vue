@@ -4,18 +4,26 @@
             <FavoritesWinterBooks 
                 v-if="currentSeason === 'winter'"
                 :user-in="userIn"
+                :user-id="userId"
+                @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"/>
             <FavoritesSpringBooks 
                 v-else-if="currentSeason === 'spring'"
                 :user-in="userIn"
+                :user-id="userId"
+                @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"/>
             <FavoritesSummerBooks 
                 v-else-if="currentSeason === 'summer'"
                 :user-in="userIn"
+                :user-id="userId"
+                @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"/>
             <FavoritesAutumnBooks 
                 v-else-if="currentSeason === 'autumn'"
                 :user-in="userIn"
+                :user-id="userId"
+                @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"/>
         </transition>
     </div>
@@ -42,6 +50,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     }
 }

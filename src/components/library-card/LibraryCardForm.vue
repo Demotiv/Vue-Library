@@ -81,7 +81,8 @@ export default {
         showVisitInfo(cardNumber) {
             this.visitsInfo = {
                 visitsCounter: cardNumber.visitsCounter,
-                bonusesCounter: cardNumber.bonuses
+                bonusesCounter: cardNumber.bonuses,
+                booksCounter: cardNumber.books
             }
         },
         handleCheck(event) {

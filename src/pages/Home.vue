@@ -1,37 +1,46 @@
 <template>
     <div class="home">
         <HeaderContainer 
+            :user-in="user.userIn"
+            :user-id="user.userId"
             @open-login="showLogin"
             @open-register="showRegister"
-            @log-out="handleUserIn"
-            :user-in="user.userIn"
-            :user-id="user.userId"/>
+            @open-profile="showProfile"
+            @log-out="handleUserIn"/>
         <WelcomeContainer/>
         <AboutContainer :is-tablet="isTablet"/>
         <FavoritesContainer 
             :user-in="user.userIn"
+            :user-id="user.userId"
+            @update-new-user-id="updateNewUserId"
             @open-login="showLogin"/>
         <CoffeeShopContainer/>
         <ContactsContainer/>
         <LibraryCardContainer
+            :user-in="user.userIn"
             @open-login="showLogin"
-            @open-register="showRegister"
-            :user-in="user.userIn"/>
+            @open-register="showRegister"/>
         <FooterContainner/>
         <ModalBackDrop :backDrop="backDrop"/>
         <ModalLogin 
+            :login-modal="loginModal"
             @close-login="closeLogin"
             @toggle-modal="toggleModal"
             @user-in="handleUserIn"
-            @click-out-side-login-modal="closeLoginToClick"
-            :loginModal="loginModal"/>
+            @click-out-side-login-modal="closeLoginToClick"/>
         <ModalRegister
+            :register-modal="registerModal"
             @close-register="closeRegister"
             @toggle-modal="toggleModal"
             @user-in="handleUserIn"
-            @click-out-side-register-modal="closeRegisterToClick"
-            :registerModal="registerModal"/>
-        <ModalProfileContainer :user-id="user.userId"/>
+            @click-out-side-register-modal="closeRegisterToClick"/>
+        <ModalProfileContainer 
+            :user-id="user.userId"
+            :user-in="user.userIn"
+            :profile-modal="profileModal"
+            @close-profile="closeProfile"
+            @click-out-side-profile="closeProfileToClick"/>
+        <ModalBuyCardContainer/>
     </div>
 </template>
 
@@ -48,6 +57,7 @@ import ModalBackDrop from '@/components/modal/ModalBackDrop.vue'
 import ModalLogin from '@/components/modal/ModalLogin.vue'
 import ModalRegister from '@/components/modal/ModalRegister.vue'
 import ModalProfileContainer from '@/components/modal/profile/ModalProfileContainer.vue'
+import ModalBuyCardContainer from '@/components/modal/buy-card/ModalBuyCardContainer.vue'
 
 export default {
     components: {
@@ -62,7 +72,8 @@ export default {
         ModalBackDrop,
         ModalLogin,
         ModalRegister,
-        ModalProfileContainer
+        ModalProfileContainer,
+        ModalBuyCardContainer
     },
     data() {
         return {
@@ -70,6 +81,7 @@ export default {
             backDrop: false,
             loginModal: false,
             registerModal: false,
+            profileModal: false,
             user: {
                 userIn: false, 
                 userId: {
@@ -87,11 +99,18 @@ export default {
         window.removeEventListener('resize', this.checkWindowsSize)
     },
     methods: {
+        updateNewUserId(newUserId) {
+            this.user.userId = newUserId
+        },
         checkWindowsSize() {
             this.isTablet = window.innerWidth <= 768
         },
         showLogin() {
             this.loginModal = !this.loginModal
+            this.backDrop = !this.backDrop
+        },
+        showProfile() {
+            this.profileModal = !this.profileModal
             this.backDrop = !this.backDrop
         },
         showRegister() {
@@ -101,6 +120,10 @@ export default {
         closeLogin() {
             this.loginModal = !this.loginModal
             this.backDrop = !this.backDrop
+        },
+        closeProfile() {
+            this.profileModal = !this.profileModal
+            this.backDrop = false
         },
         closeRegister() {
             this.registerModal = !this.registerModal
@@ -120,6 +143,10 @@ export default {
         },
         closeRegisterToClick() {
             this.registerModal = false
+            this.backDrop = false
+        },
+        closeProfileToClick() {
+            this.profileModal = false
             this.backDrop = false
         }
     }

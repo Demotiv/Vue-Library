@@ -8,7 +8,7 @@
             <section class="book__body">
                 <div class="book__title-n-author">
                     <h4 class="book__title">{{ book.title }}</h4>
-                    <p class="book__author">{{ book.author }}</p>
+                    <p class="book__author">By {{ book.author }}</p>
                 </div>
                 <div class="book__text">
                     <p>{{ book.p }}</p>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { addBooks } from '@/storage'
+
 export default {
     props: {
         staff: {
@@ -43,13 +45,26 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
+    data() {
+        return {
+            newUserId: {}
+        }
+    },  
     methods: {
         handleClick() {
             if (!this.userIn) {
                 console.log('click')
                 this.$emit('open-login')
+            } else {
+                const updatedUserId = addBooks(this.userId.email, this.book.title, this.book.author)
+
+                this.$emit('update-new-user-id', updatedUserId)
             }
         }
     }

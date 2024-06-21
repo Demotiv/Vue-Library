@@ -84,6 +84,10 @@ export default {
             this.$emit('update:onDropDown', false)
             this.$emit('open-register')
         },
+        handleProfileClick() {
+            this.$emit('update:onDropDown', false)
+            this.$emit('open-profile')
+        },
         handleLogOutClick() {
             this.$emit('update:onDropDown', false)
             this.$emit('log-out')

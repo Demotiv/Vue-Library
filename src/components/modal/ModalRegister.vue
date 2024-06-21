@@ -111,11 +111,13 @@ export default {
             const randomCardNumber = Math.floor(Math.random() * 0x1000000000).toString(16).padStart(9, '0').toUpperCase()
             const randomBonuses = Math.floor(1000 + Math.random() * 9000)
             const visitsCounter = 1 
+            const books = 0
 
             userData.fullName = userData['first-name'] + ' ' + userData['last-name']
             userData.cardNumber = randomCardNumber
             userData.bonuses = randomBonuses
             userData.visitsCounter = visitsCounter
+            userData.books = books
             
             addUserData(userData.email, userData)
 

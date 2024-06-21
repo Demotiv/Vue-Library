@@ -5,24 +5,32 @@
             :book="firstBook"
             :img="firstBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="secondBook"
             :img="secondBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="thirdBook"
             :img="thirdBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="fouthBook"
             :img="fouthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
     </div>
 </template>
@@ -43,6 +51,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -50,7 +62,7 @@ export default {
             staff: 'Staff Picks',
             firstBook: {
                 title: 'The Book Eaters',
-                author: 'By Sunyi Dean',
+                author: 'Sunyi Dean',
                 p: `An unusual sci-fi story about a book eater woman 
                     who tries desperately to save her dangerous mind-eater 
                     son from tradition and certain death. 
@@ -64,7 +76,7 @@ export default {
             },
             secondBook: {
                 title: 'Cackle',
-                author: 'By Rachel Harrison',
+                author: 'Rachel Harrison',
                 p: `Are your Halloween movies of choice The Witches of Eastwick 
                 and Practical Magic? Look no further than here - where a woman 
                 recovering from a breakup moves to a quaint town in upstate 
@@ -76,7 +88,7 @@ export default {
             },
             thirdBook: {
                 title: 'Dante: Poet of the Secular World',
-                author: 'By Erich Auerbach',
+                author: 'Erich Auerbach',
                 p: `Auerbach's engaging book places the 'Comedy' 
                 within the tradition of epic, tragedy, and philosophy in general, 
                 arguing for Dante's uniqueness as one who raised the individual 
@@ -89,7 +101,7 @@ export default {
             },
             fouthBook: {
                 title: 'The Last Queen',
-                author: 'By Clive Irving',
+                author: 'Clive Irving',
                 p: `A timely and revelatory new biography of Queen Elizabeth 
                 (and her family) exploring how the Windsors have evolved 
                 and thrived as the modern world has changed around them.`,

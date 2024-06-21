@@ -5,24 +5,32 @@
             :book="ninthBook"
             :img="ninthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="tenthBook"
             :img="tenthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="eleventhBook"
             :img="eleventhBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="twelfthBook"
             :img="twelfthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
     </div>
 </template>
@@ -43,6 +51,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -50,7 +62,7 @@ export default {
             staff: 'Staff Picks',
             ninthBook: {
                 title: 'Crude: A Memoir',
-                author: 'By Pablo Fajardo & ​​Sophie Tardy-Joubert',
+                author: 'Pablo Fajardo & ​​Sophie Tardy-Joubert',
                 p: `Drawing and color by Damien Roudeau | This book illustrates 
                 the struggles of a group of indigenous Ecuadoreans 
                 as they try to sue the ChevronTexaco company for damage their oil 
@@ -62,7 +74,7 @@ export default {
             },
             tenthBook: {
                 title: 'Let My People Go Surfing',
-                author: 'By Yvon Chouinard',
+                author: 'Yvon Chouinard',
                 p: `Chouinard—climber, businessman, environmentalist—shares tales 
                 of courage and persistence from his experience of founding and 
                 leading Patagonia, Inc. Full title: Let My People Go Surfing: 
@@ -75,7 +87,7 @@ export default {
             },
             eleventhBook: {
                 title: 'The Octopus Museum: Poems',
-                author: 'By Brenda Shaughnessy',
+                author: 'Brenda Shaughnessy',
                 p: `This collection of bold and scathingly beautiful feminist 
                 poems imagines what comes after our current age of environmental 
                 destruction, racism, sexism, and divisive politics.`,
@@ -86,7 +98,7 @@ export default {
             },
             twelfthBook: {
                 title: 'Shark Dialogues: A Novel',
-                author: 'By Kiana Davenport',
+                author: 'Kiana Davenport',
                 p: `An epic saga of seven generations of one family encompasses 
                 the tumultuous history of Hawaii as a Hawaiian woman gathers her 
                 four granddaughters together in an erotic tale of villains and dreamers, 

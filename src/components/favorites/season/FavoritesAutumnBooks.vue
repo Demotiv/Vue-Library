@@ -5,24 +5,32 @@
             :book="thirteenthBook"
             :img="thirteenthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="fourteenthBook"
             :img="fourteenthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="fifteenthBook"
             :img="fifteenthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
         <FavoritesBook
             :staff="staff"
             :book="sixteenthBook"
             :img="sixteenthBook.img"
             :user-in="userIn"
+            :user-id="userId"
+            @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"/>
     </div>
 </template>
@@ -43,6 +51,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -50,7 +62,7 @@ export default {
             staff: 'Staff Picks',
             thirteenthBook: {
                 title: 'Casual Conversation',
-                author: 'By Renia White',
+                author: 'Renia White',
                 p: `White's impressive debut collection takes readers 
                 through and beyond the concepts of conversation 
                 and the casual - both what we say to each other and what 
@@ -63,7 +75,7 @@ export default {
             },
             fourteenthBook: {
                 title: 'The Great Fire',
-                author: 'By Lou Ureneck',
+                author: 'Lou Ureneck',
                 p: `The harrowing story of an ordinary American and a 
                 principled Naval officer who, horrified by the burning of Smyrna, 
                 led an extraordinary rescue effort that saved 
@@ -75,7 +87,7 @@ export default {
             },
             fifteenthBook: {
                 title: 'Rickey: The Life and Legend',
-                author: 'By Howard Bryant',
+                author: 'Howard Bryant',
                 p: `With the fall rolling around, one can't help but 
                 think of baseball's postseason coming up! And what better 
                 way to prepare for it than reading the biography of one of 
@@ -88,7 +100,7 @@ export default {
             },
             sixteenthBook: {
                 title: 'Slug: And Other Stories',
-                author: 'By Megan Milks',
+                author: 'Megan Milks',
                 p: `Exes Tegan and Sara find themselves chained together 
                 by hairballs of codependency. A father and child experience 
                 the shared trauma of giving birth to gods from their wounds.`,
