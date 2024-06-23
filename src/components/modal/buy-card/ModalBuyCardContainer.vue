@@ -1,11 +1,21 @@
 <template>
     <transition name="descent">
-        <div class="buy-card">
+        <div 
+            class="buy-card"
+            v-if="buyCardModal"
+            v-clickaway="closeBuyCard">
             <img 
                 :src="closeBtn.src" 
-                :alt="closeBtn.alt">
+                :alt="closeBtn.alt"
+                @click="$emit('close-buy-card')">
             <ModalBuyCardTitle/>
-            <ModalBuyCardForm/>
+            <div class="buy-card__wrapper">
+                <ModalBuyCardForm 
+                    :user-id="userId"
+                    @close-buy-card="closeBuyCard"
+                    @update-new-user-id="$emit('update-new-user-id', $event)"/>
+                <ModalBuyCardText/>
+            </div>
         </div>
     </transition>
 </template>
@@ -14,11 +24,27 @@
 import closeBtn from '@/assets/img/modal/close_btn-white.png'
 import ModalBuyCardTitle from '@/components/modal/buy-card/ModalBuyCardTitle.vue'
 import ModalBuyCardForm from '@/components/modal/buy-card/ModalBuyCardForm.vue'
+import ModalBuyCardText from '@/components/modal/buy-card/ModalBuyCardText.vue'
+import { directive as Clickaway } from 'vue-clickaway'
 
 export default {
+    directives: {
+        Clickaway
+    },
     components: {
         ModalBuyCardTitle,
-        ModalBuyCardForm
+        ModalBuyCardForm,
+        ModalBuyCardText
+    },
+    props: {
+        buyCardModal: {
+            type: Boolean,
+            default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
+        }
     },
     data() {
         return {
@@ -27,6 +53,14 @@ export default {
                 alt: 'close-btn'
             }
         }
+    },
+    methods: {
+        closeBuyCard() {
+            if (this.buyCardModal) {
+                this.$emit('click-out-side-buy-card')
+            }
+        },
+
     }
 }
 </script>
@@ -38,6 +72,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column;
     background-color: $white;
     z-index: 3;
 
@@ -46,6 +81,12 @@ export default {
         top: 15px;
         right: 15px;
         cursor: pointer;
+    }
+
+    &__wrapper {
+        padding: 30px 40px 40px 40px;
+        display: flex;
+        gap: 40px;
     }
 }
 

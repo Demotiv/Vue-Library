@@ -13,7 +13,8 @@
             :user-in="user.userIn"
             :user-id="user.userId"
             @update-new-user-id="updateNewUserId"
-            @open-login="showLogin"/>
+            @open-login="showLogin"
+            @open-buy-card="showBuyCard"/>
         <CoffeeShopContainer/>
         <ContactsContainer/>
         <LibraryCardContainer
@@ -40,7 +41,12 @@
             :profile-modal="profileModal"
             @close-profile="closeProfile"
             @click-out-side-profile="closeProfileToClick"/>
-        <ModalBuyCardContainer/>
+        <ModalBuyCardContainer
+            :user-id="user.userId"
+            :buy-card-modal="buyCardModal"
+            @close-buy-card="showBuyCard"
+            @click-out-side-buy-card="closeBuyCardModalToClick"
+            @update-new-user-id="updateNewUserId"/>
     </div>
 </template>
 
@@ -82,6 +88,7 @@ export default {
             loginModal: false,
             registerModal: false,
             profileModal: false,
+            buyCardModal: false,
             user: {
                 userIn: false, 
                 userId: {
@@ -117,6 +124,10 @@ export default {
             this.registerModal = !this.registerModal
             this.backDrop = !this.backDrop
         },
+        showBuyCard() {
+            this.buyCardModal = !this.buyCardModal
+            this.backDrop = !this.backDrop
+        },
         closeLogin() {
             this.loginModal = !this.loginModal
             this.backDrop = !this.backDrop
@@ -147,6 +158,10 @@ export default {
         },
         closeProfileToClick() {
             this.profileModal = false
+            this.backDrop = false
+        },
+        closeBuyCardModalToClick() {
+            this.buyCardModal = false
             this.backDrop = false
         }
     }

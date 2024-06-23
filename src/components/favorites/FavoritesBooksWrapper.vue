@@ -6,25 +6,29 @@
                 :user-in="userIn"
                 :user-id="userId"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
-                @open-login="$emit('open-login')"/>
+                @open-login="$emit('open-login')"
+                @open-buy-card="$emit('open-buy-card')"/>
             <FavoritesSpringBooks 
                 v-else-if="currentSeason === 'spring'"
                 :user-in="userIn"
                 :user-id="userId"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
-                @open-login="$emit('open-login')"/>
+                @open-login="$emit('open-login')"
+                @open-buy-card="$emit('open-buy-card')"/>
             <FavoritesSummerBooks 
                 v-else-if="currentSeason === 'summer'"
                 :user-in="userIn"
                 :user-id="userId"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
-                @open-login="$emit('open-login')"/>
+                @open-login="$emit('open-login')"
+                @open-buy-card="$emit('open-buy-card')"/>
             <FavoritesAutumnBooks 
                 v-else-if="currentSeason === 'autumn'"
                 :user-in="userIn"
                 :user-id="userId"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
-                @open-login="$emit('open-login')"/>
+                @open-login="$emit('open-login')"
+                @open-buy-card="$emit('open-buy-card')"/>
         </transition>
     </div>
 </template>

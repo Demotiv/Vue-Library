@@ -7,7 +7,8 @@
             :user-in="userIn"
             :user-id="userId"
             @update-new-user-id="$emit('update-new-user-id', $event)"
-            @open-login="$emit('open-login')"/>
+            @open-login="$emit('open-login')"
+            @open-buy-card="$emit('open-buy-card')"/>
     </div>
 </template>
 

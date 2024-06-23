@@ -15,7 +15,7 @@
                 </div>
                 <button 
                     class="book__button"
-                    @click="handleClick">Buy</button>
+                    @click="handleClick">{{ selectedBook ? 'Own' : 'Buy' }}</button>
             </section>
         </div>
         <img 
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { addBooks } from '@/storage'
+import { addBooks, hasUserBankInfo } from '@/storage'
 
 export default {
     props: {
@@ -53,7 +53,8 @@ export default {
     },
     data() {
         return {
-            newUserId: {}
+            newUserId: {},
+            selectedBook: false
         }
     },  
     methods: {
@@ -61,10 +62,14 @@ export default {
             if (!this.userIn) {
                 console.log('click')
                 this.$emit('open-login')
-            } else {
+            } else if (hasUserBankInfo(this.userId.email)) {
                 const updatedUserId = addBooks(this.userId.email, this.book.title, this.book.author)
 
+                this.selectedBook = !this.selectedBook
+                
                 this.$emit('update-new-user-id', updatedUserId)
+            } else {
+                this.$emit('open-buy-card')
             }
         }
     }

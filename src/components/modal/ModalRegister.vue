@@ -11,7 +11,7 @@
             @click="$emit('close-register')">
         <div class="modal-register__wrapper">
             <h2>{{ registerForm.title }}</h2>
-            <form 
+            <form
                 action="#" 
                 method="get" 
                 class="modal-register__form"

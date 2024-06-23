@@ -56,6 +56,13 @@ export function increaseVisitsCounter(email) {
   }
 }
 
+export function hasUserBankInfo(userId) {
+  const usersData = getAllUsersData()
+  const user = usersData[userId]
+
+  return user && user.hasOwnProperty('bankInfo') && typeof user.bankInfo === 'object'
+}
+
 export function addBooks(userId, title, author) {
   let usersData = getAllUsersData()
 
@@ -79,4 +86,10 @@ export function addBooks(userId, title, author) {
   setUsersData(usersData)
 
   return usersData[userId]
+}
+
+export function updateUserData(updatedUserId) {
+  const usersData = getAllUsersData()
+  usersData[updatedUserId.email] = updatedUserId
+  setUsersData(usersData)
 }
