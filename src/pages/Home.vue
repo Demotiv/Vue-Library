@@ -19,6 +19,8 @@
         <ContactsContainer/>
         <LibraryCardContainer
             :user-in="user.userIn"
+            :user-id="user.userId"
+            @open-profile="showProfile"
             @open-login="showLogin"
             @open-register="showRegister"/>
         <FooterContainner/>

@@ -5,6 +5,7 @@
                 v-if="currentSeason === 'winter'"
                 :user-in="userIn"
                 :user-id="userId"
+                :current-season="currentSeason"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"
                 @open-buy-card="$emit('open-buy-card')"/>
@@ -12,6 +13,7 @@
                 v-else-if="currentSeason === 'spring'"
                 :user-in="userIn"
                 :user-id="userId"
+                :current-season="currentSeason"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"
                 @open-buy-card="$emit('open-buy-card')"/>
@@ -19,6 +21,7 @@
                 v-else-if="currentSeason === 'summer'"
                 :user-in="userIn"
                 :user-id="userId"
+                :current-season="currentSeason"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"
                 @open-buy-card="$emit('open-buy-card')"/>
@@ -26,6 +29,7 @@
                 v-else-if="currentSeason === 'autumn'"
                 :user-in="userIn"
                 :user-id="userId"
+                :current-season="currentSeason"
                 @update-new-user-id="$emit('update-new-user-id', $event)"
                 @open-login="$emit('open-login')"
                 @open-buy-card="$emit('open-buy-card')"/>

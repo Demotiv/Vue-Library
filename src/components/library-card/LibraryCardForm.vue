@@ -14,7 +14,7 @@
                             id="name" 
                             name="full-name"
                             pattern="[a-zA-Z ]+" 
-                            placeholder="Reader's name"
+                            :placeholder="userIn ? userId.fullName : `Reader's Name`"
                             class="form__input"
                             :style="isValidInput ? { color: 'rgb(187, 148, 95)' } : {}">
                         <label for="name"></label>
@@ -24,7 +24,7 @@
                             id="cardNumber" 
                             name="card-number" 
                             pattern="[a-zA-Z0-9]{1,9}" 
-                            placeholder="Card number"
+                            :placeholder="userIn ? userId.cardNumber : `Card number`"
                             class="form__input"
                             :style="isValidInput ? { color: 'rgb(187, 148, 95)' } : {}">
                         <label for="cardNumber"></label>
@@ -32,6 +32,8 @@
                 </div>
                 <LibraryCardVisitsInfo 
                     v-if="showVisits"
+                    :user-in="userIn"
+                    :user-id="userId"
                     :visits-info="visitsInfo"/>
                 <button v-else>{{ form.button }}</button>
             </fieldset>
@@ -52,6 +54,10 @@ export default {
         userIn: {
             type: Boolean,
             default: false
+        },
+        userId: {
+            type: Object,
+            default: () => ({})
         }
     },
     data() {
@@ -68,6 +74,15 @@ export default {
             visitsInfo: {
                 type: Object,
                 default: () => ({})
+            }
+        }
+    },
+    watch: {
+        userIn: {
+            handler(newVal) {
+                if (newVal) {
+                    this.showVisits = !this.showVisits
+                }
             }
         }
     },

@@ -6,6 +6,7 @@
             :img="thirteenthBook.img"
             :user-in="userIn"
             :user-id="userId"
+            :current-season="currentSeason"
             @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"
             @open-buy-card="$emit('open-buy-card')"/>
@@ -15,6 +16,7 @@
             :img="fourteenthBook.img"
             :user-in="userIn"
             :user-id="userId"
+            :current-season="currentSeason"
             @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"
             @open-buy-card="$emit('open-buy-card')"/>
@@ -24,6 +26,7 @@
             :img="fifteenthBook.img"
             :user-in="userIn"
             :user-id="userId"
+            :current-season="currentSeason"
             @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"
             @open-buy-card="$emit('open-buy-card')"/>
@@ -33,6 +36,7 @@
             :img="sixteenthBook.img"
             :user-in="userIn"
             :user-id="userId"
+            :current-season="currentSeason"
             @update-new-user-id="$emit('update-new-user-id', $event)"
             @open-login="$emit('open-login')"
             @open-buy-card="$emit('open-buy-card')"/>
@@ -59,7 +63,11 @@ export default {
         userId: {
             type: Object,
             default: () => ({})
-        }
+        },
+        currentSeason: {
+            type: String,
+            required: true
+        },
     },
     data() {
         return {

@@ -49,15 +49,23 @@ export default {
         userId: {
             type: Object,
             default: () => ({})
-        }
+        },
+        currentSeason: {
+            type: String,
+            required: true
+        },
     },
     data() {
         return {
-            newUserId: {},
             selectedBook: false
         }
-    },  
+    },
     methods: {
+        /*
+        changeSelectedBook() {
+            this.selectedBook = !this.selectedBook
+        },
+        */
         handleClick() {
             if (!this.userIn) {
                 console.log('click')
@@ -65,8 +73,32 @@ export default {
             } else if (hasUserBankInfo(this.userId.email)) {
                 const updatedUserId = addBooks(this.userId.email, this.book.title, this.book.author)
 
-                this.selectedBook = !this.selectedBook
+                /*
+                let result = updatedUserId.selectedBooks.map(function(val) {
+                    return Object.keys(val).map(function(key) {
+                        return val[key]
+                    })
+                })
                 
+                if (result.find(book => book[0] === this.book.title && book[1] === this.book.author)) {
+                    this.changeSelectedBook()
+                }
+                */
+
+                /*
+                const book = updatedUserId?.selectedBooks?.find(
+                book => book.title === this.book.title && book.author === this.book.author
+                )
+
+                if (book) {
+                    this.selectedBook = true
+                }
+                */ 
+
+               /*
+                this.selectedBook = !this.selectedBook
+                */
+
                 this.$emit('update-new-user-id', updatedUserId)
             } else {
                 this.$emit('open-buy-card')
